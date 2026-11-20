@@ -1,0 +1,36 @@
+name: Desplegar en InfinityFree
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # permite lanzarlo a mano desde la pestaña Actions
+
+concurrency:
+  group: deploy-infinityfree
+  cancel-in-progress: false # evita dos despliegues simultáneos
+
+jobs:
+  deploy:
+    name: Subir por FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v4
+
+      - name: Sincronizar archivos
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
+          port: 21
+          local-dir: ./
+          server-dir: htdocs/
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            database/**
+            README.md
+            config/credenciales.example.php
