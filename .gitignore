@@ -1,0 +1,23 @@
+# --- Credenciales (NUNCA subir al repositorio) ---
+config/credenciales.php
+
+# --- Fotos subidas por los usuarios ---
+uploads/*
+!uploads/.htaccess
+!uploads/.gitkeep
+
+# --- Entorno y editor ---
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Sistema operativo (Windows) ---
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# --- Logs y temporales ---
+*.log
+error_log
+*.tmp
+*.bak
