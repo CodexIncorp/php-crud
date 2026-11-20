@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 $cred = require __DIR__ . '/credenciales.php';
 
-// Nunca mostrar errores técnicos al usuario: se registran en el log.
+// Nunca mostrar errores técnicos al usuario: se registran en el log del servidor.
 ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 
