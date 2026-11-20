@@ -2,7 +2,7 @@
 
 Aplicación web dinámica para gestionar una agenda de contactos con operaciones CRUD completas, desarrollada con **PHP** y **PDO**.
 
-**Sitio publicado:** https://SUBDOMINIO.infinityfreeapp.com <!-- Modificar tras publicar -->
+**Sitio publicado:** https://php-crud.infinityfree.io/
 
 ## Objetivo
 

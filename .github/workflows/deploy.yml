@@ -20,13 +20,14 @@ jobs:
       - name: Sincronizar archivos
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
+          dry-run: true
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftp
           port: 21
           local-dir: ./
-          server-dir: htdocs/
+          server-dir: php-crud.infinityfree.io/htdocs/
           exclude: |
             **/.git*
             **/.git*/**
