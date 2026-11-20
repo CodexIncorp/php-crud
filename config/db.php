@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 $cred = require __DIR__ . '/credenciales.php';
@@ -11,7 +12,7 @@ set_exception_handler(function (Throwable $e): void {
     error_log('[Agenda] ' . $e->getMessage() . ' en ' . $e->getFile() . ':' . $e->getLine());
     http_response_code(500);
     echo '<!DOCTYPE html><html lang="es"><head><meta charset="utf-8"><title>Error</title></head>'
-       . '<body><p>Ocurrió un error inesperado. Inténtalo más tarde.</p></body></html>';
+        . '<body><p>Ocurrió un error inesperado. Inténtalo más tarde.</p></body></html>';
 });
 
 if ($cred['driver'] === 'pgsql') {
