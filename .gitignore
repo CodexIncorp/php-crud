@@ -3,6 +3,7 @@ config/credenciales.php
 
 # --- Fotos subidas por los usuarios ---
 uploads/*
+!uploads/default.svg
 !uploads/.htaccess
 !uploads/.gitkeep
 
