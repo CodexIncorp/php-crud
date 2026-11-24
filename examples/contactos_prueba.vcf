@@ -1,0 +1,162 @@
+BEGIN:VCARD
+VERSION:3.0
+N:García López;Sofía;;;
+FN:Sofía García López
+TEL;TYPE=CELL:+52 961 123 4501
+EMAIL;TYPE=INTERNET:sofia.garcia@example.com
+ADR;TYPE=HOME:;;Av. Central Poniente 245, Tuxtla Gutiérrez;;;;
+NOTE:Compañera de clase de Programación Web
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Hernández Ruiz;Diego;;;
+FN:Diego Hernández Ruiz
+TEL;TYPE=CELL:+52 961 234 5602
+EMAIL;TYPE=INTERNET:diego.hr@example.com
+ADR;TYPE=HOME:;;Calle 5a Norte 118, Col. Centro;;;;
+NOTE:Contacto de laboratorio de redes
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Martínez Pérez;Valeria;;;
+FN:Valeria Martínez Pérez
+TEL;TYPE=CELL:961-345-6703
+EMAIL;TYPE=INTERNET:valeria.mp@example.com
+NOTE:Diseñadora gráfica
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Ramírez Castro;Mateo;;;
+FN:Mateo Ramírez Castro
+TEL;TYPE=CELL:+52 961 456 7804
+ADR;TYPE=HOME:;;Blvd. Belisario Domínguez 1080;;;;
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Torres Morales;Camila;;;
+FN:Camila Torres Morales
+TEL;TYPE=CELL:(961) 567-8905
+EMAIL;TYPE=INTERNET:camila.torres@example.com
+ADR;TYPE=HOME:;;Fracc. Terán, Calle 2a Sur 44;;;;
+NOTE:Coordinadora de proyectos
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Flores Jiménez;Sebastián;;;
+FN:Sebastián Flores Jiménez
+TEL;TYPE=CELL:9616789006
+EMAIL;TYPE=INTERNET:sebastian.fj@example.com
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Vázquez Mendoza;Lucía;;;
+FN:Lucía Vázquez Mendoza
+TEL;TYPE=CELL:+52 961 789 0107
+EMAIL;TYPE=INTERNET:lucia.vazquez@example.com
+ADR;TYPE=HOME:;;Col. Moctezuma, Calle Olmo 32;;;;
+NOTE:Tutora de cálculo diferencial
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Sánchez Ortega;Emiliano;;;
+FN:Emiliano Sánchez Ortega
+TEL;TYPE=CELL:961 890 1208
+NOTE:Solo teléfono y nota
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Reyes Navarro;Renata;;;
+FN:Renata Reyes Navarro
+TEL;TYPE=CELL:+52 961 901 2309
+EMAIL;TYPE=INTERNET:renata.reyes@example.com
+ADR;TYPE=HOME:;;Barrio San Roque, 3a Oriente 77;;;;
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Cruz Domínguez;Alejandro;;;
+FN:Alejandro Cruz Domínguez
+TEL;TYPE=CELL:961-012-3410
+EMAIL;TYPE=INTERNET:alejandro.cruz@example.com
+NOTE:Proveedor de componentes electrónicos
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Gómez Herrera;Mariana;;;
+FN:Mariana Gómez Herrera
+TEL;TYPE=CELL:+52 961 112 2311
+EMAIL;TYPE=INTERNET:mariana.gomez@example.com
+ADR;TYPE=HOME:;;Col. Las Palmas, Av. Palma Real 15;;;;
+NOTE:Equipo de robótica
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Díaz Vargas;Leonardo;;;
+FN:Leonardo Díaz Vargas
+TEL;TYPE=CELL:961 223 3412
+EMAIL;TYPE=INTERNET:leo.diaz@example.com
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Morales Peña;Fernanda;;;
+FN:Fernanda Morales Peña
+TEL;TYPE=CELL:+52 961 334 4513
+ADR;TYPE=HOME:;;Ocosingo, Barrio Guadalupe 19;;;;
+NOTE:Contacto familiar
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Gutiérrez Silva;Nicolás;;;
+FN:Nicolás Gutiérrez Silva
+TEL;TYPE=CELL:(961) 445-5614
+EMAIL;TYPE=INTERNET:nico.gutierrez@example.com
+NOTE:Administrador de servidores Linux
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Rojas Aguilar;Andrea;;;
+FN:Andrea Rojas Aguilar
+TEL;TYPE=CELL:9615566715
+EMAIL;TYPE=INTERNET:andrea.rojas@example.com
+ADR;TYPE=HOME:;;Col. El Retiro, Calle 4a Poniente 88;;;;
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Mendoza Ríos;Gabriel;;;
+FN:Gabriel Mendoza Ríos
+TEL;TYPE=CELL:+52 961 667 7816
+NOTE:Taller de impresión 3D
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Castillo León;Ximena;;;
+FN:Ximena Castillo León
+TEL;TYPE=CELL:961-778-8917
+EMAIL;TYPE=INTERNET:ximena.castillo@example.com
+ADR;TYPE=HOME:;;Fracc. Jardines de Tuxtla 204;;;;
+NOTE:Asesora académica
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Romero Chávez;Daniel;;;
+FN:Daniel Romero Chávez
+TEL;TYPE=CELL:+52 961 889 9018
+EMAIL;TYPE=INTERNET:daniel.romero@example.com
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Álvarez Soto;Paula;;;
+FN:Paula Álvarez Soto
+TEL;TYPE=CELL:961 990 0119
+EMAIL;TYPE=INTERNET:paula.alvarez@example.com
+ADR;TYPE=HOME:;;Col. Bienestar Social, Calle 1a Norte 61;;;;
+NOTE:Contacto de servicio social
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
+N:Núñez Estrada;Iván;;;
+FN:Iván Núñez Estrada
+TEL;TYPE=CELL:+52 961 101 1220
+EMAIL;TYPE=INTERNET:ivan.nunez@example.com
+ADR;TYPE=HOME:;;Col. Xamaipak, Av. Tulipanes 90;;;;
+NOTE:Último contacto de prueba\; incluye punto y coma
+END:VCARD
