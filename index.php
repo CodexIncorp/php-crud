@@ -4,13 +4,11 @@ declare(strict_types=1);
 require __DIR__ . '/config/db.php';
 require __DIR__ . '/includes/funciones.php';
 
-// 1. Leer y validar parámetros desde la URL
-$q       = trim((string)($_GET['q'] ?? ''));
-$letra   = mb_strtoupper(trim((string)($_GET['letra'] ?? '')), 'UTF-8');
-$orden   = (string)($_GET['orden'] ?? 'apellido_asc');
-$fEmail  = isset($_GET['email']) && $_GET['email'] === '1';
-$fDir    = isset($_GET['dir']) && $_GET['dir'] === '1';
-$fFoto   = isset($_GET['foto']) && $_GET['foto'] === '1';
+
+$q     = trim((string)($_GET['q'] ?? ''));
+$letra = mb_strtoupper(trim((string)($_GET['letra'] ?? '')), 'UTF-8');
+$orden = (string)($_GET['orden'] ?? 'apellido_asc');
+$fFoto = isset($_GET['foto']) && $_GET['foto'] === '1';
 
 $alfabeto = [
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -29,7 +27,7 @@ if (!isset($ordenesDisponibles[$orden])) {
     $orden = 'apellido_asc';
 }
 
-// Mapa para agrupar vocales acentuadas bajo su letra base (portable PG/MySQL)
+
 $mapaAcentos = [
     'Á' => 'A', 'É' => 'E', 'Í' => 'I', 'Ó' => 'O', 'Ú' => 'U', 'Ü' => 'U',
 ];
@@ -41,12 +39,9 @@ $variantesLetra = [
     'U' => ['U', 'Ú', 'Ü'],
 ];
 
-// Helper para construir URLs preservando el resto de filtros activos
 $estadoActual = [
     'q'     => $q !== '' ? $q : null,
     'letra' => $letra !== '' ? $letra : null,
-    'email' => $fEmail ? '1' : null,
-    'dir'   => $fDir ? '1' : null,
     'foto'  => $fFoto ? '1' : null,
     'orden' => $orden !== 'apellido_asc' ? $orden : null,
 ];
@@ -59,7 +54,7 @@ $urlCon = static function (array $cambios) use ($estadoActual): string {
     return $params ? 'index.php?' . http_build_query($params) : 'index.php';
 };
 
-// 2. Obtener total general y letras disponibles según el campo de orden
+
 $colLetra = ($orden === 'nombre_asc') ? 'nombre' : 'apellido';
 $totalGeneral = (int)$pdo->query('SELECT COUNT(*) FROM contactos')->fetchColumn();
 
@@ -73,7 +68,8 @@ foreach ($stLetras->fetchAll(PDO::FETCH_COLUMN) as $ini) {
     }
 }
 
-// 3. Construir consulta filtrada de forma modular
+
+
 $condiciones = [];
 $params      = [];
 
@@ -82,16 +78,10 @@ if ($q !== '') {
     $like = '%' . $qEsc . '%';
     $condiciones[] = "(LOWER(CONCAT(nombre, ' ', apellido)) LIKE LOWER(:q1)
                        OR LOWER(CONCAT(apellido, ' ', nombre)) LIKE LOWER(:q2)
-                       OR telefono LIKE :q3
-                       OR LOWER(COALESCE(email, '')) LIKE LOWER(:q4)
-                       OR LOWER(COALESCE(direccion, '')) LIKE LOWER(:q5)
-                       OR LOWER(COALESCE(notas, '')) LIKE LOWER(:q6))";
+                       OR telefono LIKE :q3)";
     $params[':q1'] = $like;
     $params[':q2'] = $like;
     $params[':q3'] = $like;
-    $params[':q4'] = $like;
-    $params[':q5'] = $like;
-    $params[':q6'] = $like;
 }
 
 if ($letra !== '') {
@@ -105,12 +95,6 @@ if ($letra !== '') {
     $condiciones[] = "UPPER(SUBSTR(TRIM({$colLetra}), 1, 1)) IN (" . implode(', ', $placeholders) . ")";
 }
 
-if ($fEmail) {
-    $condiciones[] = "email IS NOT NULL AND email <> ''";
-}
-if ($fDir) {
-    $condiciones[] = "direccion IS NOT NULL AND direccion <> ''";
-}
 if ($fFoto) {
     $condiciones[] = "foto <> 'default.svg'";
 }
@@ -123,7 +107,7 @@ $orderBy = match ($orden) {
     default      => 'ORDER BY apellido ASC, nombre ASC',
 };
 
-$sql = "SELECT id, nombre, apellido, telefono, email, direccion, foto
+$sql = "SELECT id, nombre, apellido, telefono, foto
         FROM contactos
         {$where}
         {$orderBy}";
@@ -131,19 +115,13 @@ $st = $pdo->prepare($sql);
 $st->execute($params);
 $contactos = $st->fetchAll();
 
-// 4. Armar lista de filtros activos para los chips removibles
+
 $filtrosActivos = [];
 if ($q !== '') {
     $filtrosActivos[] = ['etiqueta' => 'Búsqueda: "' . $q . '"', 'url' => $urlCon(['q' => null])];
 }
 if ($letra !== '') {
     $filtrosActivos[] = ['etiqueta' => 'Inicial: ' . $letra, 'url' => $urlCon(['letra' => null])];
-}
-if ($fEmail) {
-    $filtrosActivos[] = ['etiqueta' => 'Con email', 'url' => $urlCon(['email' => null])];
-}
-if ($fDir) {
-    $filtrosActivos[] = ['etiqueta' => 'Con dirección', 'url' => $urlCon(['dir' => null])];
 }
 if ($fFoto) {
     $filtrosActivos[] = ['etiqueta' => 'Con foto propia', 'url' => $urlCon(['foto' => null])];
@@ -161,12 +139,10 @@ include __DIR__ . '/includes/header.php';
     <!-- Buscador principal + Ordenamiento separado -->
     <form method="get" class="barra-superior">
         <?php if ($letra !== ''): ?><input type="hidden" name="letra" value="<?= e($letra) ?>"><?php endif; ?>
-        <?php if ($fEmail): ?><input type="hidden" name="email" value="1"><?php endif; ?>
-        <?php if ($fDir): ?><input type="hidden" name="dir" value="1"><?php endif; ?>
         <?php if ($fFoto): ?><input type="hidden" name="foto" value="1"><?php endif; ?>
 
         <div class="buscador-caja">
-            <input type="search" name="q" placeholder="Buscar por nombre, teléfono, email o dirección..." value="<?= e($q) ?>">
+            <input type="search" name="q" placeholder="Buscar por nombre o teléfono..." value="<?= e($q) ?>">
             <button class="btn btn-primario" type="submit">Buscar</button>
         </div>
 
@@ -182,15 +158,9 @@ include __DIR__ . '/includes/header.php';
         </label>
     </form>
 
-    <!-- Chips de filtros booleanos combinables -->
+    <!-- Filtro rápido -->
     <div class="chips-fila" role="group" aria-label="Filtros rápidos">
         <span class="chips-titulo">Filtros:</span>
-        <a class="chip <?= $fEmail ? 'chip-activo' : '' ?>" href="<?= e($urlCon(['email' => $fEmail ? null : '1'])) ?>">
-            Con email
-        </a>
-        <a class="chip <?= $fDir ? 'chip-activo' : '' ?>" href="<?= e($urlCon(['dir' => $fDir ? null : '1'])) ?>">
-            Con dirección
-        </a>
         <a class="chip <?= $fFoto ? 'chip-activo' : '' ?>" href="<?= e($urlCon(['foto' => $fFoto ? null : '1'])) ?>">
             Con foto propia
         </a>
@@ -228,7 +198,7 @@ include __DIR__ . '/includes/header.php';
                     <?= e($fa['etiqueta']) ?> <span aria-hidden="true">&times;</span>
                 </a>
             <?php endforeach; ?>
-            <a class="limpiar-todo" href="<?= e($urlCon(['q' => null, 'letra' => null, 'email' => null, 'dir' => null, 'foto' => null])) ?>">
+            <a class="limpiar-todo" href="<?= e($urlCon(['q' => null, 'letra' => null, 'foto' => null])) ?>">
                 Limpiar todo
             </a>
         </div>
@@ -251,7 +221,7 @@ include __DIR__ . '/includes/header.php';
             <thead>
                 <tr>
                     <th>Foto</th>
-                    <th>Contacto</th>
+                    <th>Nombre</th>
                     <th>Teléfono</th>
                     <th>Acciones</th>
                 </tr>
@@ -260,14 +230,7 @@ include __DIR__ . '/includes/header.php';
                 <?php foreach ($contactos as $c): ?>
                     <tr>
                         <td><img class="avatar" src="uploads/<?= e($c['foto']) ?>" alt="Foto de <?= e($c['nombre']) ?>"></td>
-                        <td>
-                            <strong><?= e($c['apellido']) ?>, <?= e($c['nombre']) ?></strong>
-                            <?php if (!empty($c['email'])): ?>
-                                <br><small class="subdato"><?= e($c['email']) ?></small>
-                            <?php elseif (!empty($c['direccion'])): ?>
-                                <br><small class="subdato"><?= e($c['direccion']) ?></small>
-                            <?php endif; ?>
-                        </td>
+                        <td><?= e($c['apellido']) ?>, <?= e($c['nombre']) ?></td>
                         <td><?= e($c['telefono']) ?></td>
                         <td class="acciones">
                             <a class="btn" href="crud/ver.php?id=<?= (int)$c['id'] ?>">Ver</a>
