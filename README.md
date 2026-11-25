@@ -25,6 +25,8 @@ Demostrar la aplicación práctica de:
 | UPDATE (vista) | `crud/editar.php` | Formulario con datos cargados |
 | UPDATE (lógica) | `crud/actualizar.php` | Valida y actualiza (UPDATE) |
 | DELETE | `crud/eliminar.php` | Confirmación previa y borrado por POST |
+| IMPORT | `crud/importar.php` | Importa contactos desde archivos vCard (`.vcf`) |
+| EXPORT | `crud/exportar.php` | Exporta todos los contactos o uno individual a vCard |
 
 ### Campos del contacto
 
@@ -74,7 +76,7 @@ Demostrar la aplicación práctica de:
 ├── css/styles.css
 ├── uploads/
 ├── database/
-│   ├── schema_pgsql.sql
+│   ├── schema_psql.sql
 │   └── schema_mysql.sql
 ├── .gitignore
 └── README.md
@@ -95,7 +97,7 @@ Demostrar la aplicación práctica de:
    cd php-crud
    ```
 2. Crea la base de datos e importa el esquema que corresponda:
-   - PostgreSQL: `database/schema_pgsql.sql`
+   - PostgreSQL: `database/schema_psql.sql`
    - MySQL/MariaDB: `database/schema_mysql.sql`
 3. Copia la plantilla de credenciales y edítala:
    ```bash
