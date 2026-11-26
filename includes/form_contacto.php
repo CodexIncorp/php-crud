@@ -42,11 +42,11 @@ function attr_error(array $errores, string $campo): string
     </label>
 
     <label>
-        <span>Foto <span class="requerido">*</span></span>
+        <span>Foto <?php if ($fotoObligatoria): ?><span class="requerido">*</span><?php else: ?><span class="opcional">(opcional: vacía conserva la actual)</span><?php endif; ?></span>
         <?php if (!empty($c['foto'])): ?>
             <img class="miniatura" src="<?= e($base) ?>uploads/<?= e($c['foto']) ?>" alt="Foto actual">
         <?php endif; ?>
-        <input type="file" name="foto" accept="image/jpeg,image/png,image/webp" required<?= attr_error($errores, 'foto') ?>>
+        <input type="file" name="foto" accept="image/jpeg,image/png,image/webp" <?= $fotoObligatoria ? 'required' : '' ?><?= attr_error($errores, 'foto') ?>>
         <?= err_campo($errores, 'foto') ?>
     </label>
 
