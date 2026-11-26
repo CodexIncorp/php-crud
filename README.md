@@ -62,6 +62,8 @@ Demostrar la aplicación práctica de:
 │   ├── editar.php
 │   ├── actualizar.php
 │   ├── ver.php
+│   ├── exportar.php
+│   ├── importar.php
 │   └── eliminar.php
 ├── config/
 │   ├── db.php
@@ -75,6 +77,7 @@ Demostrar la aplicación práctica de:
 │   └── form_contacto.php
 ├── css/styles.css
 ├── uploads/
+│   └── default.svg
 ├── database/
 │   ├── schema_psql.sql
 │   └── schema_mysql.sql
