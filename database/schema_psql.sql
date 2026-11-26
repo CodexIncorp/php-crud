@@ -1,6 +1,6 @@
 -- Ejecutar desde psql o pgAdmin
 
-CREATE DATABASE IF NOT EXISTS agenda ENCODING 'UTF8';
+CREATE DATABASE agenda ENCODING 'UTF8';
 \c agenda
 
 CREATE TABLE IF NOT EXISTS contactos (
