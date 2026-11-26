@@ -14,11 +14,8 @@ if (!csrf_valido()) {
 
 $d = datos_contacto($_POST);
 $errores = validar_contacto($d);
-[$foto, $errFoto] = procesar_foto($_FILES['foto'] ?? [], false);
-if ($errFoto !== null) {
-    $errores['foto'] = $errFoto;
-}
-$fotoFinal = $foto ?? 'default.svg';
+[$foto, $errFoto] = procesar_foto($_FILES['foto'] ?? [], true);
+if ($errFoto) $errores['foto'] = $errFoto;
 
 if ($errores) {
     borrar_foto($foto); // si la foto sí subió pero otro campo falló
@@ -35,7 +32,7 @@ try {
         ':nombre'    => $d['nombre'],
         ':apellido'  => $d['apellido'],
         ':telefono'  => $d['telefono'],
-        ':foto'      => $fotoFinal, // <--- cambia $foto por $fotoFinal
+        ':foto'      => $foto,
         ':email'     => $d['email'] !== '' ? $d['email'] : null,
         ':direccion' => $d['direccion'] !== '' ? $d['direccion'] : null,
         ':notas'     => $d['notas'] !== '' ? $d['notas'] : null,
