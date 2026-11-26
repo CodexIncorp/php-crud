@@ -169,7 +169,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         if ($omitidos > 0) {
                             $msg .= " Se omitieron {$omitidos} por datos incompletos o inválidos.";
                         }
-                        flash('ok', $msg);
+                        flash('exito', $msg);
                         redirigir('../index.php');
                     } else {
                         $error = "No se importó ningún contacto ({$omitidos} omitidos por datos incompletos o teléfono inválido).";
